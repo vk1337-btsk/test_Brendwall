@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Продукты</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{% static 'products/css/main.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-6">
+          <!-- Форма -->
+
+          <div class="text-center">
+            <h2>Добавить продукт</h2>
+          </div>
+
+          <!-- Элемент для отображения ошибок -->
+          <div id="error-message" class="text-danger mb-3"></div>
+
+          <!-- Элемент для отображения успешного сообщения -->
+          <div id="success-message" class="text-success mb-3"></div>
+
+          <!-- Форма -->
+          <form id="product-form">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label for="name" class="form-label">Название:</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="Введите название" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Описание:</label>
+              <textarea
+                id="description"
+                name="description"
+                class="form-control"
+                placeholder="Введите описание"
+                required
+              ></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="price" class="form-label">Стоимость:</label>
+              <input
+                type="number"
+                step="0.01"
+                id="price"
+                name="price"
+                class="form-control"
+                placeholder="Введите стоимость"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </form>
+        </div>
+
+        <!-- Таблица продуктов -->
+        <div class="col-md-6">
+          <h2 class="text-center">Список продуктов</h2>
+          <div class="d-flex justify-content-center">
+            <table id="product-table" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Название</th>
+                  <th>Описание</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'products/js/app.js' %}"></script>
+  </body>
+</html>
